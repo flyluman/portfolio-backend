@@ -1,8 +1,8 @@
 import { fetchGeoData } from '../services/ipLookupService.js';
 import { db } from '../config/db.js';
 
-export const IP_CACHE = {}; // Cache for IP geolocation
-export const QUERY_CACHE = {}; // Cache for commonly queried logs
+export const IP_CACHE = {};
+export const QUERY_CACHE = {};
 
 export const logger = async (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
