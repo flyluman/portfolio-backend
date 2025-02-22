@@ -28,8 +28,8 @@ export const logger = async (req, res, next) => {
             });
         }
     } else {
-        const { ip, isp, city, country } = IP_CACHE[ip];
-        req.address = ip;
+        const { ip: cachedIp, isp, city, country } = IP_CACHE[ip];
+        req.address = cachedIp;
         req.isp = isp;
         req.city = city;
         req.country = country;
