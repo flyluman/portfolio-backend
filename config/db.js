@@ -43,14 +43,14 @@ export class SQLiteDB {
         this.db.prepare(`
             INSERT INTO ${table} (ip, isp, city, country, date, path, useragent)
             VALUES (?, ?, ?, ?, ?, ?, ?)
-        `).run(ip, isp, city, country, new Date().toUTCString(), path, userAgent);
+        `).run(ip, isp, city, country, new Date(Date.now() + 21600000).toUTCString() + '+06', path, userAgent);
     }
 
     insertMsg(ip, isp, city, country, userAgent, name, email, msg) {
         this.db.prepare(`
             INSERT INTO msg (ip, isp, city, country, date, useragent, name, email, msg)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `).run(ip, isp, city, country, new Date().toUTCString(), userAgent, name, email, msg);
+        `).run(ip, isp, city, country, new Date(Date.now() + 21600000).toUTCString() + '+06', userAgent, name, email, msg);
     }
 
     fetchAll(table) {
