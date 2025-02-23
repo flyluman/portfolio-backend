@@ -18,15 +18,6 @@ export const logger = async (req, res, next) => {
         req.isp = isp;
         req.city = city;
         req.country = country;
-
-        const table = country !== 'Bangladesh' ? 'foreign_log' : 'log';
-        const existingLog = db.checkExistingLog(geoIp);
-
-        if (!existingLog) {
-            setImmediate(() => {
-                db.insertLog(table, geoIp, isp, city, country, req.path, req.headers['user-agent']);
-            });
-        }
     } else {
         const { ip: cachedIp, isp, city, country } = IP_CACHE[ip];
         req.address = cachedIp;
@@ -34,6 +25,11 @@ export const logger = async (req, res, next) => {
         req.city = city;
         req.country = country;
     }
+
+    const table = country !== 'Bangladesh' ? 'foreign_log' : 'log';
+    setImmediate(() => {
+        db.insertLog(table, geoIp, isp, city, country, req.path, req.headers['user-agent']);
+    });
 
     next();
 };
