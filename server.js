@@ -7,8 +7,16 @@ import { whoAmIHandler } from './controllers/whoamiController.js';
 import { messengerHandler } from './controllers/messengerController.js';
 import { queryHandler } from './controllers/queryController.js';
 import { PORT } from './config/config.js';
+import https from 'https'
+import fs from 'fs'
 
 const app = express();
+
+// SSL
+const options = {
+    key: fs.readFileSync("/etc/letsencrypt/live/luman.mooo.com/privkey.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/luman.mooo.com/fullchain.pem"),
+};
 
 // Middleware setup
 app.use(helmet());
@@ -26,4 +34,8 @@ app.post('/query', queryHandler);
 app.all('*', logger, (req, res) => res.status(404).send('Requested resource not found on server.'));
 
 // Start server
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+// app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+https.createServer(options, app).listen(PORT, () => {
+    console.log(`🚀 Server running on https://luman.mooo.com on port ${PORT}`);
+});
