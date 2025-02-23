@@ -28,7 +28,7 @@ export const logger = async (req, res, next) => {
 
     const table = req.country !== 'Bangladesh' ? 'foreign_log' : 'log';
     setImmediate(() => {
-        db.insertLog(table, req.geoIp, req.isp, req.city, req.country, req.req.path, req.headers['user-agent']);
+        db.insertLog(table, req.geoIp, req.isp, req.city, req.country, req.path, req.headers['user-agent']);
     });
 
     next();
