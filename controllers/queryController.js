@@ -9,7 +9,7 @@ export const queryHandler = (req, res) => {
     }
 
     try {
-        res.json(db.fetchAll(name).slice(50));
+        res.json(db.fetchAll(name));
     } catch (err) {
         console.error('Query Error:', err);
         res.status(500).json({ error: 'Query failed' });

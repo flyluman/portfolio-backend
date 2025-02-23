@@ -1,5 +1,4 @@
 import Database from 'better-sqlite3';
-import { QUERY_CACHE } from '../middleware/logger.js';
 
 export class SQLiteDB {
 
@@ -54,11 +53,7 @@ export class SQLiteDB {
     }
 
     fetchAll(table) {
-        if (QUERY_CACHE[table]) {
-            return QUERY_CACHE[table];
-        }
-        const result = this.db.prepare(`SELECT * FROM ${table} ORDER BY id DESC`).all();
-        QUERY_CACHE[table] = result;
+        const result = this.db.prepare(`SELECT * FROM ${table} ORDER BY id DESC LIMIT 50`).all();
         return result;
     }
 
