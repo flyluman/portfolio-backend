@@ -1,4 +1,4 @@
-# Use minimal node:22-alpine image
+# Use minimal node:23-alpine image
 FROM node:23-alpine
 
 # Set work-dir
