@@ -6,6 +6,7 @@ import logger from './middleware/logger.js';
 import { whoAmIHandler } from './controllers/whoamiController.js';
 import { messengerHandler } from './controllers/messengerController.js';
 import { queryHandler } from './controllers/queryController.js';
+import { testHandler } from './controllers/testController.js';
 import { PORT } from './config/config.js';
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(rateLimiter);
 app.get('/whoami', logger, whoAmIHandler);
 app.post('/messenger', logger, messengerHandler);
 app.post('/query', queryHandler);
+app.get('/test', logger, testHandler);
 
 // 404 Handler
 app.all('*', logger, (req, res) => res.status(404).send('Requested resource not found on server.'));
