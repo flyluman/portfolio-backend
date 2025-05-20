@@ -39,7 +39,7 @@ jobs:
       
       # Step 5: Test a route
       - name: Test a route
-        run: curl localhost:8080/Test
+        run: curl localhost:8080/health
 
 
       
