@@ -28,4 +28,4 @@ app.get('/test', logger, testHandler);
 app.all('*', logger, (req, res) => res.status(404).send('Requested resource not found on server.'));
 
 // Start server
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

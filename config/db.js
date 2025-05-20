@@ -35,7 +35,7 @@ export class SQLiteDB {
                 date TEXT, useragent TEXT, name TEXT, email TEXT, msg TEXT
             );
         `);
-        console.log('✅ SQLite DB Initialized.');
+        console.log('SQLite DB Initialized.');
     }
 
     insertLog(table, ip, isp, city, country, path, userAgent) {
